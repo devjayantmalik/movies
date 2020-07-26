@@ -1,14 +1,6 @@
 import React from "react";
 import MovieList from "../../components/MoviesList";
-
-let fakeData = [];
-for (let i = 0; i < 12; i++) {
-  fakeData.push({
-    id: i,
-    poster: "/images/movie.jpg",
-    title: "Movie title will appear here.",
-  });
-}
+import fakeData from "../../api";
 
 const Home = () => {
   return (
