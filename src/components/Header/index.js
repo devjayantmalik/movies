@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [isHidden, setIsHidden] = useState(true);
+
   return (
     <header>
-      <nav className="navbar navbar-expand-md">
+      <nav className="navbar navbar-light navbar-expand-md">
         <a className="navbar-brand">Movie Site</a>
-        <button className="navbar-toggler">
+        <button
+          className="navbar-toggler"
+          onClick={() => setIsHidden(!isHidden)}
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse">
+        <div className={`collapse navbar-collapse ${isHidden ? "" : "show"}`}>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to="/" className="nav-link">
