@@ -14,12 +14,12 @@ const SiteRouter = () => (
   <HashRouter>
     <Header />
     <Switch>
-      <Route to="/" exact component={Home} />
-      <Route to="/category/:name" exact component={Category} />
-      <Route to="/watch/:id" exact component={Watch} />
-      <Route to="/search/:text" exact component={Search} />
-      <Route to="/404" exact component={PageNotFound} />
-      <Route to="/500" exact component={ServerError} />
+      <Route path="/" exact component={Home} />
+      <Route path="/category/:name" exact component={Category} />
+      <Route path="/watch/:id" exact component={Watch} />
+      <Route path="/search/:text" exact component={Search} />
+      <Route path="/404" exact component={PageNotFound} />
+      <Route path="/500" exact component={ServerError} />
     </Switch>
   </HashRouter>
 );
