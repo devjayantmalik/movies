@@ -9,10 +9,12 @@ import PageNotFound from "../pages/Errors/404";
 import ServerError from "../pages/Errors/500";
 
 import Header from "../components/Header";
+import Searchbar from "../components/Searchbar";
 
 const SiteRouter = () => (
   <HashRouter>
     <Header />
+    <Searchbar />
     <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/category/:name" exact component={Category} />
