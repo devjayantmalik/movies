@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Image from "../Image";
 
 const MovieCard = ({ movie }) => {
   const { poster, title } = movie;
   return (
     <article className="card movie-card">
       <header className="card-header">
-        <img src={poster} alt={title} className="card-img-top poster" />
+        <Image src={poster} alt={title} classNames="card-img-top poster" />
       </header>
       <div className="card-body mt-2">
         <h3 className="h4">{title}</h3>

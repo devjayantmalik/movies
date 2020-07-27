@@ -2,7 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Image = ({ src, alt, classNames }) => {
-  return <img className={classNames} src={src} alt={alt} />;
+  return (
+    <img
+      className={classNames}
+      src={`${process.env.PUBLIC_URL}/${src}`}
+      alt={alt}
+    />
+  );
 };
 
 Image.propTypes = {
@@ -13,7 +19,6 @@ Image.propTypes = {
 
 Image.defaultProps = {
   classNames: "",
-  src: "",
   alt: "",
 };
 
