@@ -7,7 +7,9 @@ const Header = () => {
   return (
     <header>
       <nav className="navbar navbar-light navbar-expand-md">
-        <a className="navbar-brand">Movie Site</a>
+        <Link to="/" className="navbar-brand">
+          Movie Site
+        </Link>
         <button
           className="navbar-toggler"
           onClick={() => setIsHidden(!isHidden)}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const VideoInfo = () => {
   return (
@@ -25,19 +26,19 @@ const VideoInfo = () => {
       <h2 className="h4 heading">Download Links</h2>
       <ul className="list-group font-weight-bold">
         <li className="list-group-item">
-          <a target="_blank" href="#">
+          <Link target="_blank" to="/">
             Openload
-          </a>
+          </Link>
         </li>
         <li className="list-group-item">
-          <a target="_blank" href="#">
+          <Link target="_blank" to="/">
             Mediafire
-          </a>
+          </Link>
         </li>
         <li className="list-group-item">
-          <a target="_blank" href="#">
+          <Link target="_blank" to="/">
             Direct Download
-          </a>
+          </Link>
         </li>
       </ul>
     </React.Fragment>

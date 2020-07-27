@@ -1,7 +1,7 @@
 import React from "react";
-import MoviesList from "../../components/MoviesList";
-import fakeData from "../../api";
-import Paginator from "../../components/Paginator";
+// import MoviesList from "../../components/MoviesList";
+// import fakeData from "../../api";
+// import Paginator from "../../components/Paginator";
 import Alert from "../../components/Alert";
 
 const Search = () => {
