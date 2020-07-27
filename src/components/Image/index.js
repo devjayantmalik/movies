@@ -2,13 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Image = ({ src, alt, classNames }) => {
-  return (
-    <img
-      className={classNames}
-      src={`${process.env.PUBLIC_URL}/${src}`}
-      alt={alt}
-    />
-  );
+  const publicUrl = process.env.PUBLIC_URL || "./";
+
+  return <img className={classNames} src={`${publicUrl}/${src}`} alt={alt} />;
 };
 
 Image.propTypes = {
