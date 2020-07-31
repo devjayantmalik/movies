@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Searchbar = ({ placeholder }) => {
   const [searchText, setSearchText] = useState("");
-  const location = useLocation();
   const history = useHistory();
 
   const onSubmit = (text) => {
-    if (location.pathname.indexOf("/search") === -1) {
-      history.replace(`/search/${text}`);
-    } else {
-      history.replace(`/search/${text}`);
-    }
+    history.replace(`/search/${text}`);
   };
 
   return (

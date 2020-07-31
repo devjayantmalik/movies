@@ -3,11 +3,13 @@ import fakeData from "../../api";
 import MoviesList from "../../components/MoviesList";
 import VideoInfo from "../../components/VideoInfo";
 
+const fakeMovie = fakeData[0];
+
 const Watch = () => {
   return (
     <main className="container-fluid pt-3">
       <section>
-        <h2 className="heading">Video Title</h2>
+        <h2 className="heading">{fakeMovie.title}</h2>
 
         <div className="row">
           <div className="col col-md-12 col-lg-8">
@@ -15,16 +17,11 @@ const Watch = () => {
           </div>
 
           <div className="col">
-            <VideoInfo />
+            <VideoInfo movie={fakeMovie} />
           </div>
         </div>
 
-        <p className="lead">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-          provident amet eos ab quisquam odio quas cumque numquam, temporibus
-          fugit asperiores assumenda laboriosam aperiam dolorum consequatur
-          consequuntur in voluptates accusamus!
-        </p>
+        <p className="lead">{fakeMovie.description}</p>
       </section>
 
       <section>
