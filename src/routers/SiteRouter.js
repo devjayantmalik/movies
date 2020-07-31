@@ -2,7 +2,7 @@ import React from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
-import Category from "../pages/Category";
+import ProductionVideos from "../pages/ProductionVideos";
 import Watch from "../pages/Watch";
 import Search from "../pages/Search";
 import Productions from "../pages/Productions";
@@ -18,7 +18,7 @@ const SiteRouter = () => (
     <Searchbar />
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route path="/production/:id" exact component={Category} />
+      <Route path="/production/:id" exact component={ProductionVideos} />
       <Route path="/productions" exact component={Productions} />
       <Route path="/watch/:id" exact component={Watch} />
       <Route path="/search/:text" exact component={Search} />
