@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Category from "../pages/Category";
 import Watch from "../pages/Watch";
 import Search from "../pages/Search";
+import Productions from "../pages/Productions";
 import PageNotFound from "../pages/Errors/404";
 import ServerError from "../pages/Errors/500";
 
@@ -17,7 +18,8 @@ const SiteRouter = () => (
     <Searchbar />
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route path="/category/:name" exact component={Category} />
+      <Route path="/production/:id" exact component={Category} />
+      <Route path="/productions" exact component={Productions} />
       <Route path="/watch/:id" exact component={Watch} />
       <Route path="/search/:text" exact component={Search} />
       <Route path="/404" exact component={PageNotFound} />
