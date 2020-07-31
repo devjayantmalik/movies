@@ -1,25 +1,40 @@
 import React from "react";
 import MovieList from "../../components/MoviesList";
-import fakeData from "../../api";
+import { connect } from "react-redux";
+import { fetchRecentMovies } from "../../services/movies/actions";
+import Spinner from "../../components/Spinner";
 
 class Home extends React.Component {
-  state = { loading: false, err: null };
+  state = { loading: true, err: null };
+
+  componentDidMount() {
+    this.props.fetchRecentMovies(
+      () => {
+        this.setState({ loading: false });
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 
   render() {
     return (
       <main className="container-fluid pt-3">
-        <section>
-          <h2 className="heading">Most Recent</h2>
-          <MovieList movies={fakeData} />
-        </section>
-
-        <section>
-          <h2 className="heading">Most Viewed</h2>
-          <MovieList movies={fakeData} />
-        </section>
+        {this.state.loading && <Spinner />}
+        {!this.state.loading && (
+          <section>
+            <h2 className="heading">Most Recent</h2>
+            <MovieList movies={this.props.movies} />
+          </section>
+        )}
       </main>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = ({ movies }) => {
+  return { movies };
+};
+
+export default connect(mapStateToProps, { fetchRecentMovies })(Home);
