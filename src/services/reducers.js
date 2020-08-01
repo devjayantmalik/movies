@@ -1,8 +1,12 @@
 import { combineReducers } from "redux";
 import moviesReducer from "./movies/reducer";
-import imagesReducer from "./images/reducer";
+import searchReducer from "./search/reducer";
+import cinemasReducer from "./cinemas/reducer";
+import producersReducer from "./producers/reducer";
 
 export default combineReducers({
   movies: moviesReducer,
-  images: imagesReducer,
+  searches: searchReducer,
+  cinemas: cinemasReducer,
+  producers: producersReducer,
 });

@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
 
-const Searchbar = ({ placeholder }) => {
+const Searchbar = ({ placeholder, onSubmit }) => {
   const [searchText, setSearchText] = useState("");
-  const history = useHistory();
 
-  const onSubmit = (text) => {
-    history.replace(`/search/${text}`);
+  const handleFormSubmission = (e) => {
+    e.preventDefault();
+
+    onSubmit(searchText);
+    return false;
   };
 
   return (
     <div className="container">
-      <form className="form-inline" onSubmit={() => onSubmit(searchText)}>
+      <form className="form-inline" onSubmit={handleFormSubmission}>
         <input
           type="text"
           className="form-control w-75 border-primary font-weight-bold"
@@ -36,6 +37,7 @@ const Searchbar = ({ placeholder }) => {
 
 Searchbar.propTypes = {
   placeholder: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 Searchbar.defaultProps = {

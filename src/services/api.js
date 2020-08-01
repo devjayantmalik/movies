@@ -1,5 +1,7 @@
 import axios from "axios";
 
-export default axios.create({
-  baseURL: "http://localhost:5000/api/v1",
+const api = axios.create({
+  baseURL: "http://localhost/web/movies-api",
 });
+
+export default api;

@@ -25,15 +25,11 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/production/1" className="nav-link">
-                Action Movies
+              <Link to="/cinemas" className="nav-link">
+                Cinemas
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/watch/1" className="nav-link">
-                Watch Movie
-              </Link>
-            </li>
+
             <li className="nav-item">
               <Link to="/productions" className="nav-link">
                 Productions
@@ -42,6 +38,11 @@ const Header = () => {
             <li className="nav-item">
               <Link to="/search/movie_name" className="nav-link">
                 Search Movie
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/watch/1" className="nav-link">
+                Watch Movie (Pending)
               </Link>
             </li>
           </ul>

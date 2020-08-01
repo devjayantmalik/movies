@@ -1,24 +1,45 @@
 import React from "react";
+
 import MoviesList from "../../components/MoviesList";
-import fakeData from "../../api";
 import Paginator from "../../components/Paginator";
 import Alert from "../../components/Alert";
+import Searchbar from "../../components/Searchbar";
+
 import { connect } from "react-redux";
+import { searchByTitle } from "../../services/search/actions";
 
 class Search extends React.Component {
-  state = { loading: false };
-  componentDidMount() {
-    this.setState({ loading: true });
+  state = { loading: false, error: "" };
 
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 2000);
+  componentDidMount() {
+    this.handleFormSubmit(this.props.title);
   }
+
+  handleFormSubmit = (title) => {
+    // Clean existing state
+    this.setState({ loading: true, error: "" });
+
+    // Search for movie and update the required info
+    this.props.searchByTitle(
+      title,
+      () => {
+        this.setState({ loading: false });
+      },
+      (err) => {
+        this.setState({ loading: false, error: err });
+      }
+    );
+  };
 
   renderLoader = () => {
     return this.state.loading ? (
       <Alert info message="Fetching your data..." />
     ) : null;
+  };
+
+  renderError = () => {
+    const { loading, error } = this.state;
+    return !loading && error ? <Alert danger message={error} /> : null;
   };
 
   renderResults = () => {
@@ -37,9 +58,14 @@ class Search extends React.Component {
   render() {
     return (
       <main className="container-fluid pt-3">
+        <Searchbar
+          onSubmit={this.handleFormSubmit}
+          placeholder="Enter text to search"
+        />
         <section>
           <h2 className="heading">Search Results</h2>
           {this.renderLoader()}
+          {this.renderError()}
           {this.renderResults()}
         </section>
       </main>
@@ -47,8 +73,10 @@ class Search extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return { results: fakeData };
+const mapStateToProps = ({ searches }, ownProps) => {
+  const title = ownProps.match.params.text;
+
+  return { results: searches, title };
 };
 
-export default connect(mapStateToProps, {})(Search);
+export default connect(mapStateToProps, { searchByTitle })(Search);
