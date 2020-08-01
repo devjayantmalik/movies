@@ -1,13 +1,15 @@
 import React from "react";
-import fakeData from "../../api";
 import Alert from "../../components/Alert";
 import MoviesList from "../../components/MoviesList";
 import VideoInfo from "../../components/VideoInfo";
+import VideoResolutions from "../../components/VideoResolutions";
+
 import { connect } from "react-redux";
 import { fetchMovieById } from "../../services/movies/actions";
+import { fetchRandomMovies } from "../../services/random/actions";
 
 class Watch extends React.Component {
-  state = { loading: true, error: "" };
+  state = { loading: true, error: "", playerVideoSource: "" };
 
   componentDidMount() {
     const id = this.props.id;
@@ -18,6 +20,15 @@ class Watch extends React.Component {
       },
       (err) => {
         this.setState({ loading: false, error: err });
+      }
+    );
+
+    this.props.fetchRandomMovies(
+      () => {
+        console.log("fetched random movies");
+      },
+      (err) => {
+        console.log(err);
       }
     );
   }
@@ -35,7 +46,7 @@ class Watch extends React.Component {
 
   render() {
     const movie = this.props.movie;
-    console.log(movie.resolutions);
+
     return (
       <main className="container-fluid pt-3">
         <section>
@@ -46,7 +57,11 @@ class Watch extends React.Component {
 
           <div className="row">
             <div className="col col-md-12 col-lg-8">
-              <video controls className="video-player" />
+              <video
+                controls
+                className="video-player"
+                src={this.state.playerVideoSource}
+              ></video>
             </div>
 
             <div className="col">
@@ -55,6 +70,10 @@ class Watch extends React.Component {
                 filesize={movie.filesize}
                 cinema={movie.cinema ? movie.cinema.title : ""}
                 producer={movie.producer ? movie.producer.title : ""}
+              />
+              <VideoResolutions
+                onSelect={(url) => this.setState({ playerVideoSource: url })}
+                resolutions={movie.resolutions || {}}
               />
             </div>
           </div>
@@ -65,18 +84,21 @@ class Watch extends React.Component {
         </section>
 
         <section>
-          <h2 className="heading">Related Movies</h2>
-          <MoviesList movies={fakeData} />
+          <h2 className="heading">Random Movies</h2>
+          <MoviesList movies={this.props.randomMovies} />
         </section>
       </main>
     );
   }
 }
 
-const mapStateToProps = ({ movies }, ownProps) => {
+const mapStateToProps = ({ movies, randomMovies }, ownProps) => {
   const id = ownProps.match.params.id;
   const movie = movies.find((mov) => mov.id === id) || {};
-  return { movie, id };
+  randomMovies = randomMovies.filter((mov) => mov.id !== movie.id);
+  return { movie, id, randomMovies };
 };
 
-export default connect(mapStateToProps, { fetchMovieById })(Watch);
+export default connect(mapStateToProps, { fetchMovieById, fetchRandomMovies })(
+  Watch
+);
