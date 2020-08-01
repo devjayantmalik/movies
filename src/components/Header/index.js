@@ -40,11 +40,6 @@ const Header = () => {
                 Search Movie
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/watch/1" className="nav-link">
-                Watch Movie (Pending)
-              </Link>
-            </li>
           </ul>
         </div>
       </nav>
